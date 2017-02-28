@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Geometry/Polygon/Rectangle.h"
+#include "Geometry/Exception/ClassInvariantViolationException.h"
 
 namespace Geometry
 {
@@ -18,10 +19,49 @@ namespace Geometry
             const Segment _sideD
         ) : angleAB(_angleAB), angleBC(_angleBC), angleCD(_angleCD), angleDA(_angleDA),
             sideA(_sideA), sideB(_sideB), sideC(_sideC), sideD(_sideD)
-        { }
+        {
+
+            if ( !sidesInvariant() ) {
+                throw Exception::ClassInvariantViolationException(
+                    "A Rectangle must have at least two of its sides equal"
+                );
+            }
+
+            if ( !anglesInvariant() ) {
+                throw Exception::ClassInvariantViolationException(
+                    "A Rectangle must have all its angles equal"
+                    " and the sum of its internal angles must be equal 360 degrees"
+                );
+            }
+
+        }
 
         Rectangle::~Rectangle()
         { }
+
+        bool Rectangle::sidesInvariant()
+        {
+            bool result = true;
+            if (getSideA().getLength() != getSideC().getLength()) result = false;
+            if (getSideB().getLength() != getSideD().getLength()) result = false;
+            return result;
+        }
+
+        bool Rectangle::anglesInvariant()
+        {
+            bool result     = true;
+            float anglesSum = getAngleAB().getLength() +
+                              getAngleBC().getLength() +
+                              getAngleCD().getLength() +
+                              getAngleDA().getLength();
+
+            if ( anglesSum != 360 ) result = false;
+
+            if (getAngleAB().getLength() != getAngleBC().getLength()) result = false;
+            if (getAngleBC().getLength() != getAngleCD().getLength()) result = false;
+            if (getAngleCD().getLength() != getAngleDA().getLength()) result = false;
+            return result;
+        }
 
         void Rectangle::draw()
         {

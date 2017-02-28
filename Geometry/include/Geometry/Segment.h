@@ -7,13 +7,12 @@ namespace Geometry
     class Segment
     {
     public:
-        Segment(int);
+        Segment(const float);
 
-        void setLength(int);
-        int getLength() const;
+        float getLength() const;
 
     private:
-        int length;
+        const float length;
 
     };
 

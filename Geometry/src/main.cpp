@@ -70,8 +70,8 @@ int main(int argc, char *argv[]) {
 
     // Triangle Polygon available forms
     Scalene scalene = Scalene(
-        Angle(60), Angle(60), Angle(60),
-        Segment(18), Segment(24), Segment(30)
+        Angle(30), Angle(60), Angle(90),
+        Segment(9), Segment(11), Segment(5)
     );
 
     scalene.draw();
@@ -80,8 +80,8 @@ int main(int argc, char *argv[]) {
     scalene.accept(perimeter);
 
     Isosceles isosceles = Isosceles(
-        Angle(60), Angle(60), Angle(60),
-        Segment(10), Segment(10), Segment(10)
+        Angle(30), Angle(30), Angle(120),
+        Segment(10), Segment(10), Segment(15)
     );
 
     isosceles.draw();
@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
 
     // Quadrilateral Polygon available forms
     Square square = Square(
-        Angle(60), Angle(60), Angle(60), Angle(60),
+        Angle(90), Angle(90), Angle(90), Angle(90),
         Segment(10), Segment(10), Segment(10), Segment(10)
     );
 
@@ -111,8 +111,8 @@ int main(int argc, char *argv[]) {
     square.accept(perimeter);
 
     Rectangle rectangle = Rectangle(
-        Angle(60), Angle(60), Angle(60), Angle(60),
-        Segment(20), Segment(20), Segment(10), Segment(10)
+        Angle(90), Angle(90), Angle(90), Angle(90),
+        Segment(20), Segment(10), Segment(20), Segment(10)
     );
 
     rectangle.draw();

@@ -39,6 +39,8 @@ namespace Geometry
             Segment getSideD() const;
 
         private:
+            bool sidesInvariant();
+            bool anglesInvariant();
             const Segment sideA, sideB, sideC, sideD;
             const Angle angleAB, angleBC, angleCD, angleDA;
 

@@ -3,18 +3,13 @@
 namespace Geometry
 {
 
-    Segment::Segment(int length)
+    Segment::Segment(const float length)
         : length(length)
     { }
 
-    int Segment::getLength() const
+    float Segment::getLength() const
     {
         return length;
-    }
-
-    void Segment::setLength(int _length)
-    {
-        length = _length;
     }
 
 }

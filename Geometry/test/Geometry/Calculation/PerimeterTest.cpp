@@ -11,19 +11,19 @@ using Geometry::Segment;
 TEST(PerimeterTestCase, Triangle) {
 
     Geometry::Polygon::Scalene scalene = Geometry::Polygon::Scalene(
-        Angle(60),  Angle(60),  Angle(60),
-        Segment(6), Segment(9), Segment(25)
+        Angle(30),  Angle(60),  Angle(90),
+        Segment(7), Segment(9), Segment(13)
     );
 
     Geometry::Calculation::Perimeter perimeterCalculator;
-    EXPECT_FLOAT_EQ(40, perimeterCalculator.calculate(scalene));
+    EXPECT_FLOAT_EQ(29, perimeterCalculator.calculate(scalene));
 
 }
 
 TEST(PerimeterTestCase, Quadrilateral) {
 
     Geometry::Polygon::Square square = Geometry::Polygon::Square(
-        Angle(60),  Angle(60),  Angle(60),  Angle(60),
+        Angle(90),  Angle(90),  Angle(90),  Angle(90),
         Segment(5), Segment(5), Segment(5), Segment(5)
     );
 

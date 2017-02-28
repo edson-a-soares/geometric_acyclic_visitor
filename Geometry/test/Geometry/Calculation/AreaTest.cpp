@@ -34,7 +34,7 @@ TEST(AreaTestCase, EllipseShape) {
 TEST(AreaTestCase, ScaleneTriangle) {
 
     Geometry::Polygon::Scalene scalene = Geometry::Polygon::Scalene(
-        Angle(60),  Angle(60), Angle(60),
+        Angle(30),  Angle(60), Angle(90),
         Segment(18), Segment(24), Segment(30)
     );
 
@@ -46,12 +46,12 @@ TEST(AreaTestCase, ScaleneTriangle) {
 TEST(AreaTestCase, IsoscelesTriangle) {
 
     Geometry::Polygon::Isosceles isosceles = Geometry::Polygon::Isosceles(
-        Angle(60),  Angle(60), Angle(60),
-        Segment(10), Segment(10), Segment(5)
+        Angle(30),  Angle(30), Angle(120),
+        Segment(10), Segment(10), Segment(12)
     );
 
     Geometry::Calculation::Area areaCalculator;
-    ASSERT_NEAR(24.20, areaCalculator.calculate(isosceles), 0.1);
+    ASSERT_NEAR(48, areaCalculator.calculate(isosceles), 0.1);
 
 }
 
@@ -70,23 +70,23 @@ TEST(AreaTestCase, EquilateralTriangle) {
 TEST(AreaTestCase, Square) {
 
     Geometry::Polygon::Square square = Geometry::Polygon::Square(
-        Angle(60),  Angle(60),  Angle(60),  Angle(60),
+        Angle(90),  Angle(90),  Angle(90),  Angle(90),
         Segment(5), Segment(5), Segment(5), Segment(5)
     );
 
     Geometry::Calculation::Area areaCalculator;
-    ASSERT_NEAR(21.65, areaCalculator.calculate(square), 0.1);
+    ASSERT_NEAR(25, areaCalculator.calculate(square), 0.1);
 
 }
 
 TEST(AreaTestCase, Rectangle) {
 
     Geometry::Polygon::Rectangle rectangle = Geometry::Polygon::Rectangle(
-        Angle(60),  Angle(60),  Angle(60),  Angle(60),
-        Segment(25), Segment(25), Segment(50), Segment(50)
+        Angle(90),  Angle(90),  Angle(90),  Angle(90),
+        Segment(25), Segment(50), Segment(25), Segment(50)
     );
 
     Geometry::Calculation::Area areaCalculator;
-    ASSERT_NEAR(1082.53, areaCalculator.calculate(rectangle), 0.1);
+    ASSERT_NEAR(1250, areaCalculator.calculate(rectangle), 0.1);
 
 }

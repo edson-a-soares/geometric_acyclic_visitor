@@ -7,13 +7,12 @@ namespace Geometry
     class Angle
     {
     public:
-        Angle(int);
+        Angle(const float);
 
-        void setLength(int);
-        int getLength() const;
+        float getLength() const;
 
     private:
-        int length;
+        float length;
 
     };
 

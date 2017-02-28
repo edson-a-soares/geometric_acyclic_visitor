@@ -16,6 +16,7 @@ file(GLOB GEOMETRY_SOURCE_FILES_TOP "${PROJECT_SOURCE_DIR}/Geometry/*.cpp")
 file(GLOB_RECURSE GEOMETRY_SOURCE_FILES_NESTED
         ${PROJECT_SOURCE_DIR}/Geometry/Measure/*.cpp
         ${PROJECT_SOURCE_DIR}/Geometry/Polygon/*.cpp
+        ${PROJECT_SOURCE_DIR}/Geometry/Exception/*.cpp
         ${PROJECT_SOURCE_DIR}/Geometry/Calculation/*.cpp)
 set(GEOMETRY_SOURCE_FILES ${GEOMETRY_SOURCE_FILES_TOP} ${GEOMETRY_SOURCE_FILES_NESTED})
 
@@ -31,6 +32,7 @@ target_link_libraries(AcyclicVisitor Geometry)
 
 file(GLOB TEST_GEOMETRY_SOURCE_FILES_TOP ${CMAKE_HOME_DIRECTORY}/Geometry/test/*.cpp)
 file(GLOB_RECURSE TEST_GEOMETRY_SOURCE_FILES_NESTED
+        ${CMAKE_HOME_DIRECTORY}/Geometry/test/Geometry/Exception/*.cpp
         ${CMAKE_HOME_DIRECTORY}/Geometry/test/Geometry/Calculation/*.cpp)
 set(TEST_GEOMETRY_SOURCE_FILES ${TEST_GEOMETRY_SOURCE_FILES_TOP} ${TEST_GEOMETRY_SOURCE_FILES_NESTED})
 
