@@ -1,30 +1,24 @@
 # Acyclic Visitor, a geometrical model #
 
-It describes how to use different geometrical shapes to understand the 
-[Visitor Pattern](https://en.wikipedia.org/wiki/Visitor_pattern),
-its limitations, benefits, and drawbacks as well as how its variation
-[Acyclic Visitor](http://wiki.c2.com/?AcyclicVisitor) can help us to avoid 
-the most of its inherent problems.
+It describes how to use different geometric shapes to understand how [Acyclic Visitor](http://wiki.c2.com/?AcyclicVisitor) 
+can help us to avoid the most inherent limitations and drawbacks of its variation [Visitor Pattern](https://en.wikipedia.org/wiki/Visitor_pattern).
 
 ### Acyclic Visitor ###
 
-The [Visitor Pattern](https://en.wikipedia.org/wiki/Visitor_pattern) allows that a new abstract behavior be added
-without changing the host classes down the hierarchy. As described by the GoF's book:
+The [Visitor Pattern](https://en.wikipedia.org/wiki/Visitor_pattern) allows a new abstract behavior addition without changing the host 
+classes throughout the hierarchy. **Visitor** is described by the GoF's book as:
 
 >Represent an operation to be performed on elements of an object structure. 
 >Visitor lets you define a new operation without changing the classes of the 
 >elements on which it operates. ― Gamma, Erich
 
-This means that, you can achieve polymorphic behavior injecting entities to 
-handle with it, rather than spread it over the class hierarchy by common operations.
-It means too that, this task is doable through composition, instead of by inheritance.
-Therefore, **Visitor** also is a great ally to follow the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle) 
-and the [Open/Close Principle](https://en.wikipedia.org/wiki/Open/closed_principle) as Robert C. Martin shows at **Principle, Patterns and agile practices in C#**.
-However, one of the worse **Visitor** drawbacks is that, although it allows you 
-easily add new classes to an existent hierarchy as well as new behaviors to these classes, 
-it is not possible add new leaf classes to the hierarchy without creating
+It means that you can achieve polymorphism by adding behavior, instead of spreading 
+common operations all over hierarchy. It means too that, this task is doable through 
+composition, rather than inheritance.
+Therefore, [Visitor Pattern](https://en.wikipedia.org/wiki/Visitor_pattern) is also a great ally to follow the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle) 
+as well as the [Open/Closed Principle](https://en.wikipedia.org/wiki/Open/closed_principle). However, one of the Visitor worst drawbacks is 
+that It is not possible to add new leaf classes to the hierarchy without creating 
 cyclic dependency among the visitor classes.
-
 
 Here is where [Acyclic Visitor](http://wiki.c2.com/?AcyclicVisitor), fortunately, comes out:
 
@@ -32,27 +26,27 @@ Here is where [Acyclic Visitor](http://wiki.c2.com/?AcyclicVisitor), fortunately
 >class hierarchies without affecting those hierarchies, and without creating 
 >the dependency cycles that are inherent to the GoF Visitor pattern. ― Martin, Robert
 
-[Acyclic Visitor](http://wiki.c2.com/?AcyclicVisitor) is a variation of the [Visitor Pattern](https://en.wikipedia.org/wiki/Visitor_pattern) that allows
-us change the **Visitor** hierarchy [through hierarchy casting and inheritance](http://www.cpptips.com/acyclic_visitor) 
-thereby avoiding the cyclic dependency among visitor classes.
+[Acyclic Visitor](http://wiki.c2.com/?AcyclicVisitor) is a variation of the Visitor Pattern that allows us to change 
+the Visitor hierarchy through hierarchy casting and inheritance, thereby avoiding the 
+cyclic dependency among visitor classes.
 
-### Clarifying it ###
+### Clarifying it, in practical terms ###
 
-The [Acyclic Visitor](http://wiki.c2.com/?AcyclicVisitor) is going to be applied to the calculation of the measures of geometrical forms. 
-Instead of adding a common operation at the top of hierarchy like follows:
- 
+[Acyclic Visitor](http://wiki.c2.com/?AcyclicVisitor) is going to being applied to the calculation of the measures of geometric forms. 
+It is going to being used as an alternative to the inheritance of a common operation.
+Thus, instead of adding a common method as follows:
+
 - calculateArea()
 - calculateRadius()
 - calculateDiameter()
 
- Classes like `Geometry::Measure::Area`, `Geometry::Measure::Radius` and 
- `Geometry::Measure::Diameter` are going to be defined to deal with
- the measures calculation responsibilities. Albeit avoiding possible violation to 
- the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle) that says:  
+Classes like `Geometry::Measure::Area`, `Geometry::Measure::Radius` and `Geometry::Measure::Diameter` 
+are going to being defined to deal with the responsibility of the measures calculation, 
+hence avoiding potential violations to the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle) that states:
 
 `A class should have only one reason to change.`
 
-**Shape** is the top of the hierarchy of the geometrical forms as follows:
+**Shape** is the top of the hierarchy of the geometric forms as follows:
 ```cpp
 
     class Shape
@@ -67,7 +61,7 @@ Instead of adding a common operation at the top of hierarchy like follows:
 
 ```
 
-Below the **Shape** interface, there are classes for all other specific sort of geometrical forms:
+Below the **Shape** interface, there are classes for all another specific sort of geometric forms:
 
 + Curved
 + Quadrilateral
@@ -130,10 +124,11 @@ Below the **Shape** interface, there are classes for all other specific sort of 
 
 ### Usage of the Acyclic Visitor ###
 
-The concrete shape classes are defined as `Measurable` classes.
-Which means that, these classes accept a Visitor `Measure` class.
-So, `Geometry::Measure::Area` is responsible for the shapes' area calculation,
-`Geometry::Measure::Circumference` is responsible for the shapes' circumference calculation, so forth.
+Concrete shape classes are defined as `Measurable` classes.
+It means just that these classes accept a visitor `Measure` class as a guest.
+So that, `Geometry::Measure::Area` is accountable to the calculation of the area, 
+as well as `Geometry::Measure::Circumference` is responsible for the calculation 
+of the circumference, so forth.
 
 ### Defining the visitable shapes ###
 
@@ -279,14 +274,14 @@ For measure the **Radius** of any shape:
 
 ### Finally, everything working together ###
 
-As a result, the shape classes have any need to know about their `Measure` classes.
-Define a shape class as `Measurable` is everything what it is needed to this class
-accept a `Measure` whatever it is.
+As a result, **Shape** classes have any need to know about their **Measure** classes. 
+Defining a **Shape** class as **Measurable** is everything that it is needed to this 
+class accepts a **Measure** class whatever it is.
 
 ```cpp
 
     int main(int argc, char *argv[]) {
-    
+
         std::cout << "Acyclic Visitor Shape's Measurements" << std::endl;
 
         // Available Measures
@@ -298,7 +293,7 @@ accept a `Measure` whatever it is.
 
         Geometry::Calculation::Perimeter perimeterCalculator;
         Geometry::Measure::Perimeter perimeter = Geometry::Measure::Perimeter(perimeterCalculator);
-    
+
         Geometry::Calculation::Circumference circumferenceCalculator;
         Geometry::Measure::Circumference circumference = Geometry::Measure::Circumference(circumferenceCalculator);
 
@@ -319,8 +314,8 @@ accept a `Measure` whatever it is.
 
         // Triangle Polygon available forms
         Scalene scalene = Scalene(
-            Angle(60), Angle(60), Angle(60),
-            Segment(18), Segment(24), Segment(30)
+            Angle(30), Angle(60), Angle(90),
+            Segment(9), Segment(11), Segment(5)
         );
 
         scalene.draw();
@@ -329,8 +324,8 @@ accept a `Measure` whatever it is.
         scalene.accept(perimeter);
 
         Isosceles isosceles = Isosceles(
-            Angle(60), Angle(60), Angle(60),
-            Segment(10), Segment(10), Segment(10)
+            Angle(30), Angle(30), Angle(120),
+            Segment(10), Segment(10), Segment(15)
         );
 
         isosceles.draw();
@@ -350,7 +345,7 @@ accept a `Measure` whatever it is.
 
         // Quadrilateral Polygon available forms
         Square square = Square(
-            Angle(60), Angle(60), Angle(60), Angle(60),
+            Angle(90), Angle(90), Angle(90), Angle(90),
             Segment(10), Segment(10), Segment(10), Segment(10)
         );
 
@@ -360,8 +355,8 @@ accept a `Measure` whatever it is.
         square.accept(perimeter);
 
         Rectangle rectangle = Rectangle(
-            Angle(60), Angle(60), Angle(60), Angle(60),
-            Segment(20), Segment(20), Segment(10), Segment(10)
+            Angle(90), Angle(90), Angle(90), Angle(90),
+            Segment(20), Segment(10), Segment(20), Segment(10)
         );
 
         rectangle.draw();
@@ -390,27 +385,31 @@ The result is:
     Circumference: 62.8304
 
     Scalene Triangle:
-    Area:      216
-    Perimeter: 72
+    Area:      22.1853
+    Perimeter: 25
 
     Isosceles Triangle:
-    Area:      43.3013
-    Perimeter: 30
+    Area:      49.6078
+    Perimeter: 35
 
     Equilateral Triangle:
     Area:      27.7128
     Perimeter: 24
 
     Square:
-    Area:      86.6013
+    Area:      100
     Perimeter: 40
 
     Rectangle:
-    Area:      173.203
+    Area:      200
     Perimeter: 60
 
     Process finished with exit code 0
+
 ```
+
+### Useful links ###
+* [Google Test](https://github.com/google/googletest/blob/master/googletest/docs/Primer.md)
 
 ### References ###
 

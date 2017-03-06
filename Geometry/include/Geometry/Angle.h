@@ -12,7 +12,7 @@ namespace Geometry
         float getLength() const;
 
     private:
-        float length;
+        const float length;
 
     };
 
